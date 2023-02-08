@@ -24,3 +24,6 @@ the website using your browsers developer tools, find the session cookie, copy
 its name and paste it into the program before the run. NEVER SHARE THIS COOKIE!
 Anyone with your session cookie string can login to your AOC account as long
 as it's valid.
+
+#4 All the personalized input data is now extracted from the AOC website to the
+repository. A neat solution. Next step, just get do'in!
