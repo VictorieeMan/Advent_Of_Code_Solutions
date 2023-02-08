@@ -33,7 +33,7 @@ for event in events:
         eventYY = str(event)
         dayNN = str(day)
 
-        # Note te importance of this placement, before altering the dayNN below.
+        # Note the importance of this placement, before altering the dayNN below.
         event_url = base_url + eventYY + "/day/" + dayNN
         newFileContent = newFileContent_base + "\nEvent url: " + event_url +"\n\"\"\""
 
