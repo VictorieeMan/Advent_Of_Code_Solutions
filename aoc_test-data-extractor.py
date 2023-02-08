@@ -9,7 +9,6 @@ https://adventofcode.com/20YY/day/DD/input
 YY >= 15, in [15,<This Year>]
 DD in [1,25]
 """
-
 import requests
 
 session_uid = input("Cookie UID:")
@@ -22,3 +21,7 @@ request = session.get(data_url)
 
 with open("input.txt",'wb') as file:
     file.write(request.content)
+
+# To do:
+# build code to parse through the aoc file system and collect the data.
+# use the collected data to build a local file folder system for solutions to use.
