@@ -10,18 +10,43 @@ YY >= 15, in [15,<This Year>]
 DD in [1,25]
 """
 import requests
+from pathlib import Path
+
+repository_url = "https://github.com/VictorieeMan/Advent_Of_Code_PythonSolutions"
+newFileContent_base = "\"\"\"" + "Created: 2023-, by @VictorieeMan\n" 
+newFileContent_base = newFileContent_base + "Repository url: " + repository_url
 
 session_uid = input("Cookie UID:")
-data_url = "https://adventofcode.com/2022/day/1/input"
-
 session = requests.session()
 session.cookies.set("session", session_uid, domain=".adventofcode.com")
 
-request = session.get(data_url)
+base_url = "https://adventofcode.com/" # sample "https://adventofcode.com/2022/day/1/input"
 
-with open("input.txt",'wb') as file:
-    file.write(request.content)
+days = range(1,26)
+events = range(2015,2023)
 
-# To do:
-# build code to parse through the aoc file system and collect the data.
-# use the collected data to build a local file folder system for solutions to use.
+for event in events:
+    for day in days:
+        data_url = base_url + str(event) + "/" + "day" + "/" + str(day) + "/input"
+        request = session.get(data_url)
+
+        eventYY = str(event)
+        dayNN = str(day)
+
+        # Note te importance of this placement, before altering the dayNN below.
+        event_url = base_url + eventYY + "/day/" + dayNN
+        newFileContent = newFileContent_base + "\nEvent url: " + event_url +"\n\"\"\""
+
+        if(day < 10):
+            dayNN = "0" + dayNN
+
+        path_uri = "events/" + str(event) + "/day" + dayNN
+        Path(path_uri).mkdir(parents=True, exist_ok=True)
+
+        data_filename = path_uri + "/input.txt"
+        with open(data_filename,'wb') as file:
+            file.write(request.content)
+
+        solution_filename = path_uri + "/" + eventYY + "-" + dayNN + "-sol.py"
+        with open(solution_filename,'w') as file:
+            file.write(newFileContent)
