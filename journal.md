@@ -14,3 +14,13 @@ That would be an entertaining challenge.
 test data, but I think that this solution [GeeksForGeeks.com](https://www.geeksforgeeks.org/downloading-files-web-using-python/?ref=lbp)
 solution might be moresuitable. Will therefor uninstall beautiful soup and
 replace it with the requests module.
+
+#3 The "aoc_test-data-extractor.py" has now solved the problem of collecting
+user specific test data from the soc site. It prompts the user for a session
+cookie string and then uses it for quthenticating and collecting the
+individualized test data. The cookie data is easiest to collect from
+your webrowsers inspect mode. Login to https://adventofcode.com/, "inspect"
+the website using your browsers developer tools, find the session cookie, copy
+its name and paste it into the program before the run. NEVER SHARE THIS COOKIE!
+Anyone with your session cookie string can login to your AOC account as long
+as it's valid.
