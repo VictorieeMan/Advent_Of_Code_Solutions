@@ -10,3 +10,15 @@ YY >= 15, in [15,<This Year>]
 DD in [1,25]
 """
 
+import requests
+
+session_uid = input("Cookie UID:")
+data_url = "https://adventofcode.com/2022/day/1/input"
+
+session = requests.session()
+session.cookies.set("session", session_uid, domain=".adventofcode.com")
+
+request = session.get(data_url)
+
+with open("input.txt",'wb') as file:
+    file.write(request.content)
