@@ -2,6 +2,13 @@
 Repository url: https://github.com/VictorieeMan/Advent_Of_Code_Solutions
 Event url: https://adventofcode.com/2017/day/21
 """
+# For importing the aoc_tools.py file
+import path
+import sys
+directory = path.Path(__file__).abspath()
+sys.path.append(directory.parent.parent.parent.parent)
 
-import aoc_tools.py as at
+import aoc_tools as at
+
+### START SOLUTION BODY ###
 

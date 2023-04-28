@@ -18,6 +18,16 @@ repository_url = "https://github.com/VictorieeMan/Advent_Of_Code_Solutions"
 newFileContent_base = "\"\"\"" + "Created: 2023-, by @VictorieeMan\n" 
 newFileContent_base = newFileContent_base + "Repository url: " + repository_url
 
+tool_import_code = "# For importing the aoc_tools.py file\n"
+tool_import_code += "import path\n"
+tool_import_code += "import sys\n"
+tool_import_code += "directory = path.Path(__file__).abspath()\n"
+tool_import_code += "sys.path.append(directory.parent.parent.parent.parent)\n\n"
+# tool_import_code += "# print('system path:\\n\\n',sys.path)\n\n"
+tool_import_code += "import aoc_tools as at\n\n"
+tool_import_code += "### START SOLUTION BODY ###\n\n"
+
+
 if(get_input):
     session_uid = input("Cookie UID:")
     session = requests.session()
@@ -40,7 +50,7 @@ for event in events:
 
         # Note the importance of this placement, before altering the dayNN below.
         event_url = base_url + eventYY + "/day/" + dayNN
-        newFileContent = newFileContent_base + "\nEvent url: " + event_url +"\n\"\"\"\n\n" + "import aoc_tools.py as at\n\n"
+        newFileContent = newFileContent_base + "\nEvent url: " + event_url +"\n\"\"\"\n" + tool_import_code
 
         if(day < 10):
             dayNN = "0" + dayNN
