@@ -14,7 +14,7 @@ import aoc2015_tools as at
 ### Part 1 ###
 
 def partOne(input):
-	pass
+    pass
 	
 ### Part 2 ###
 def partTwo(input):
