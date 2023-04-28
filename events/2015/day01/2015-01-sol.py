@@ -12,3 +12,14 @@ del directory # Removing variable, for a cleaner debug
 import aoc2015_tools as at
 ### START SOLUTION BODY ###
 
+directions = at.input_to_string(__file__,"input.txt")
+
+floor = 0
+
+for direction in directions:
+    if (direction == '('):
+        floor += 1
+    elif (direction == ')'):
+        floor -= 1
+
+print(floor)
