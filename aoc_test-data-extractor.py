@@ -30,7 +30,7 @@ if(get_input):
 base_url = "https://adventofcode.com/" # sample "https://adventofcode.com/2022/day/1/input"
 
 days = range(1,26)
-events = range(2015,2023)
+events = range(2015,2016)
 
 for event in events:
     for day in days:

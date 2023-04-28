@@ -9,6 +9,6 @@ directory = path.Path(__file__).abspath()
 sys.path.append(directory.parent.parent.parent.parent)
 del directory # Removing variable, for a cleaner debug
 
-import aoc_tools as at
+import aoc2015_tools as at
 ### START SOLUTION BODY ###
 
