@@ -12,7 +12,7 @@ DD in [1,25]
 import requests
 from pathlib import Path
 
-repository_url = "https://github.com/VictorieeMan/Advent_Of_Code_PythonSolutions"
+repository_url = "https://github.com/VictorieeMan/Advent_Of_Code_Solutions"
 newFileContent_base = "\"\"\"" + "Created: 2023-, by @VictorieeMan\n" 
 newFileContent_base = newFileContent_base + "Repository url: " + repository_url
 
