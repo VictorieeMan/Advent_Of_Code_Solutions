@@ -14,7 +14,29 @@ import aoc2015_tools as at
 ### Part 1 ###
 
 def partOne(input):
-    pass
+    """Data contains directional steps,
+    how many unique points are visited in the discretky defined grid?
+    """
+    position = at.Coordinate_2d(0,0)
+
+    visited = set()
+    visited.add(position)
+
+    # This for loop "walks" around the grid,
+    # and adds each position to a set that only keeps unique positions.
+    for dir in input:
+        if (dir == "<"):
+            position += at.Coordinate_2d(-1,0)
+        elif (dir == "^"):
+            position += at.Coordinate_2d(0,1)
+        elif (dir == ">"):
+            position += at.Coordinate_2d(1,0)
+        elif (dir == "v"):
+            position += at.Coordinate_2d(0,-1)
+        visited.add(position)
+        print(position.tuple_out())
+    
+    print(len(visited))
 	
 ### Part 2 ###
 def partTwo(input):

@@ -29,12 +29,23 @@ def input_to_string(FILE,filename):
 ### Classes ###
 
 class Coordinate_2d(object):
-    def __init__(self, y, x):
+    def __init__(self, x, y):
         self.x = x
         self.y = y
     
     def __add__(self, other):
         return Coordinate_2d(self.x + other.x, self.y + other.y)
+    
+    """"""
+    # Added to make the class iterable and possible to store in a set.
+    def __hash__(self) -> int:
+        return hash((self.getX(), self.getY()))
+    
+    def __eq__(self, other) -> bool:
+        if isinstance(other, Coordinate_2d):
+            return self.getX() == other.getX() and self.getY() == other.getY()
+        return False
+    """"""
     
     def getX(self):
         """Good for reducing Encapsulation 'leaky abstraction',
