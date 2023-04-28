@@ -5,6 +5,8 @@ Purpose: A collection of tools for the Advent of Code 2015 solutions.
 """
 import os
 
+### Utility ###
+
 def get_ScriptDir(FILE):
     """Returns the directory of the script that calls this function."""
     script_path = os.path.realpath(FILE)
@@ -23,3 +25,35 @@ def input_to_string(FILE,filename):
     with open(get_InputPath(FILE,filename), 'r') as file:
         input_string = file.read()
     return input_string
+
+### Classes ###
+
+class Coordinate_2d(object):
+    def __init__(self, y, x):
+        self.x = x
+        self.y = y
+    
+    def __add__(self, other):
+        return Coordinate_2d(self.x + other.x, self.y + other.y)
+    
+    def getX(self):
+        """Good for reducing Encapsulation 'leaky abstraction',
+        Read-Only access & scalability. We can now centrally change how out xy,
+        is stored within this class without disturbing code that calls .getX
+        """
+        # Get method for X coordinate
+        return self.x
+    
+    def getY(self):
+        # Get method for Y coordinate
+        return self.y
+    
+    def tuple_out(self):
+        """Returns a coordinate tuple
+        """
+        return tuple((self.getX(),self.getY()))
+
+
+### Functions ###
+
+### Math
