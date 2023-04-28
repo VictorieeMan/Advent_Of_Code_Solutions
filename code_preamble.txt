@@ -7,4 +7,16 @@ del directory # Removing variable, for a cleaner debug
 
 import aoc2015_tools as at
 ### START SOLUTION BODY ###
+### Part 1 ###
 
+def partOne(input):
+	pass
+	
+### Part 2 ###
+def partTwo(input):
+    pass
+
+### Main ###
+input = at.input_to_string(__file__,"input.txt")
+partOne(input)
+partTwo(input)
