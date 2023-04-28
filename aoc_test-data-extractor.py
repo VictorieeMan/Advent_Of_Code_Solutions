@@ -22,9 +22,10 @@ tool_import_code = "# For importing the aoc_tools.py file\n"
 tool_import_code += "import path\n"
 tool_import_code += "import sys\n"
 tool_import_code += "directory = path.Path(__file__).abspath()\n"
-tool_import_code += "sys.path.append(directory.parent.parent.parent.parent)\n\n"
+tool_import_code += "sys.path.append(directory.parent.parent.parent.parent)\n"
 # tool_import_code += "# print('system path:\\n\\n',sys.path)\n\n"
-tool_import_code += "import aoc_tools as at\n\n"
+tool_import_code += "del directory # Removing variable, for a cleaner debug\n\n"
+tool_import_code += "import aoc_tools as at\n"
 tool_import_code += "### START SOLUTION BODY ###\n\n"
 
 
