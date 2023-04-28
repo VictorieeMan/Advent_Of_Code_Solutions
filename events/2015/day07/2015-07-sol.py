@@ -6,7 +6,7 @@ Event url: https://adventofcode.com/2015/day/7
 import path
 import sys
 directory = path.Path(__file__).abspath()
-sys.path.append(directory.parent.parent.parent.parent)
+sys.path.append(directory.parent.parent)
 del directory # Removing variable, for a cleaner debug
 
 import aoc2015_tools as at
