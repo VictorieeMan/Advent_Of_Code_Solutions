@@ -31,8 +31,9 @@ events = range(2015,2023)
 
 for event in events:
     for day in days:
-        data_url = base_url + str(event) + "/" + "day" + "/" + str(day) + "/input"
-        request = session.get(data_url)
+        if(get_input):
+            data_url = base_url + str(event) + "/" + "day" + "/" + str(day) + "/input"
+            request = session.get(data_url)
 
         eventYY = str(event)
         dayNN = str(day)
