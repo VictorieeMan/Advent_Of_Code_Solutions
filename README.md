@@ -8,7 +8,15 @@ Read this gist for more info [guide_venv_versionDiff.txt](https://gist.github.co
 py -m virtualenv .virtenv
 
 When adding new modules
+'''
 pip freeze > requirements.txt
+'''
+
+'''
+.virtenv\Scripts\activate
+'''
 
 When installing from requirements
+'''
 pip install -r requirements.txt
+'''
