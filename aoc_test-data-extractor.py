@@ -12,13 +12,17 @@ DD in [1,25]
 import requests
 from pathlib import Path
 
+get_input = False
+
 repository_url = "https://github.com/VictorieeMan/Advent_Of_Code_Solutions"
 newFileContent_base = "\"\"\"" + "Created: 2023-, by @VictorieeMan\n" 
 newFileContent_base = newFileContent_base + "Repository url: " + repository_url
 
-session_uid = input("Cookie UID:")
-session = requests.session()
-session.cookies.set("session", session_uid, domain=".adventofcode.com")
+if(get_input):
+    session_uid = input("Cookie UID:")
+    session = requests.session()
+    session.cookies.set("session", session_uid, domain=".adventofcode.com")
+
 
 base_url = "https://adventofcode.com/" # sample "https://adventofcode.com/2022/day/1/input"
 
@@ -35,7 +39,7 @@ for event in events:
 
         # Note the importance of this placement, before altering the dayNN below.
         event_url = base_url + eventYY + "/day/" + dayNN
-        newFileContent = newFileContent_base + "\nEvent url: " + event_url +"\n\"\"\""
+        newFileContent = newFileContent_base + "\nEvent url: " + event_url +"\n\"\"\"\n\n" + "import aoc_tools.py as at\n\n"
 
         if(day < 10):
             dayNN = "0" + dayNN
@@ -43,9 +47,10 @@ for event in events:
         path_uri = "events/" + str(event) + "/day" + dayNN
         Path(path_uri).mkdir(parents=True, exist_ok=True)
 
-        data_filename = path_uri + "/input.txt"
-        with open(data_filename,'wb') as file:
-            file.write(request.content)
+        if(get_input):
+            data_filename = path_uri + "/input.txt"
+            with open(data_filename,'wb') as file:
+                file.write(request.content)
 
         solution_filename = path_uri + "/" + eventYY + "-" + dayNN + "-sol.py"
         with open(solution_filename,'w') as file:
