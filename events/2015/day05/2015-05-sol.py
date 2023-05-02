@@ -1,4 +1,4 @@
-"""Created: 2023-, by @VictorieeMan
+"""Created: 2023-05-02, by @VictorieeMan
 Repository url: https://github.com/VictorieeMan/Advent_Of_Code_Solutions
 Event url: https://adventofcode.com/2015/day/5
 """
@@ -12,6 +12,15 @@ del directory # Removing variable, for a cleaner debug
 import aoc2015_tools as at
 ### START SOLUTION BODY ###
 ### Part 1 ###
+
+def three_vowels_check():
+    pass
+
+def double_letter_check():
+    pass
+
+def no_forbidden_check():
+    pass
 
 def partOne(input):
     pass
