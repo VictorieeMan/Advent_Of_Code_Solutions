@@ -13,17 +13,49 @@ import aoc2015_tools as at
 ### START SOLUTION BODY ###
 ### Part 1 ###
 
-def three_vowels_check():
-    pass
+import re
 
-def double_letter_check():
-    pass
+def three_vowels_check(string):
+    vowels = "aeiou"
+    counter = 0
 
-def no_forbidden_check():
-    pass
+    for char in string:
+        if(char in vowels):
+            counter +=1
+            if counter == 3:
+                return True
+    
+    return False
+
+def double_letter_check(string):
+    for i in range(0,len(string)-1):
+        if(string[i]==string[i+1]):
+            return True
+        
+    return False
+
+def no_forbidden_check(string):
+    forbidden_pairs = ["ab","cd","pq","xy"]
+    for pair in forbidden_pairs:
+        if re.search(pair,string):
+            return False
+        
+    return True
+
+def check_for_nice(string):
+    if double_letter_check(string):
+        if three_vowels_check(string):
+            if no_forbidden_check(string):
+                return 1
+    return 0
 
 def partOne(input):
-    pass
+    data = input.split("\n")
+    nice = 0
+    for string in data:
+        nice += check_for_nice(string)
+    print(nice)
+
 	
 ### Part 2 ###
 def partTwo(input):
