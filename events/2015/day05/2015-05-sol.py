@@ -58,8 +58,43 @@ def partOne(input):
 
 	
 ### Part 2 ###
+def check_for_two_letterPairs(string):
+    last_char = len(string) - 1
+    i = 0
+    while i <= last_char-3: #Shortest potential string is 4 long.
+        pair = string[i:i+2] #iterating over pairs in the string.
+        string_tail = string[i+2:]
+        if re.search(pair,string_tail): #Checking for second occurance.
+            return True
+        i += 1
+    
+    return False
+
+def check_for_letterSandwich(string):
+    # Check for triple with begin = end, ex: xyx
+    triple = ["","",""] #Implemented as a que; first in, first out
+    for char in string:
+        triple.append(char)
+        triple.pop(0)
+        if(triple[0]==triple[-1]):
+            return True
+    return False
+
+
+def check_for_nice_2(string):
+    if check_for_letterSandwich(string):
+        if check_for_two_letterPairs(string): #The more expensive funciton
+            return True
+        
+    return False
+        
+
 def partTwo(input):
-    pass
+    data = input.split("\n")
+    nice = 0
+    for string in data:
+        nice += check_for_nice_2(string)
+    print(nice)
 
 ### Main ###
 input = at.input_to_string(__file__,"input.txt")
