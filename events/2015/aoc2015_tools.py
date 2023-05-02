@@ -5,6 +5,10 @@ Purpose: A collection of tools for the Advent of Code 2015 solutions.
 """
 import os
 
+### Useful modules
+import hashlib
+import re #Regex
+
 ### Utility ###
 
 def get_ScriptDir(FILE):
@@ -63,8 +67,16 @@ class Coordinate_2d(object):
         """Returns a coordinate tuple
         """
         return tuple((self.getX(),self.getY()))
-
+    
 
 ### Functions ###
+
+### String functions
+# boolean regex function
+def regex_check(regex, string):
+    """Returns True if the regex matches the string, else False."""
+    # https://www.w3schools.com/python/python_regex.asp
+    
+    return bool(re.search(regex, string))
 
 ### Math
