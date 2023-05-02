@@ -15,9 +15,9 @@ import aoc2015_tools as at
 
 import hashlib
 
-def five_leading_zeros_check(string):
+def leading_zeros_check(string,quantity=5):
     try:
-        for i in range(0,5):
+        for i in range(0,quantity):
             if(string[i] != '0'):
                 return False
     except:
@@ -26,13 +26,13 @@ def five_leading_zeros_check(string):
     return True
             
 
-def partOne(input):
+def partOne(input,quantity=5):
     key = input.split("\n")[0] # To exlude the newline char.
     number = 1
     str2hash = key + str(number)
     hash = hashlib.md5(str2hash.encode()).hexdigest()
 
-    while not five_leading_zeros_check(hash):
+    while not leading_zeros_check(hash,quantity):
         number += 1
         str2hash = key + str(number)
         hash = hashlib.md5(str2hash.encode()).hexdigest()
@@ -42,7 +42,7 @@ def partOne(input):
 	
 ### Part 2 ###
 def partTwo(input):
-    pass
+    partOne(input,6)
 
 ### Main ###
 input = at.input_to_string(__file__,"input.txt")
