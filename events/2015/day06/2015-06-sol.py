@@ -42,13 +42,26 @@ def parse_instruction_to_command(input_line):
 
     return command
 
-    
-
+def operate_on_grid(grid,command):
+    """Preforms command as an operation on the grid."""
+    operation, x1, y1, x2, y2 = command
+    for i in range(x1,x2):
+        for j in range(y1,y2):
+            key = str(i) + ',' + str(j)
+            if operation == 2:
+                grid[key] = (grid[key] + 1) % 2
+            else:
+                grid[key] = operation
+    return grid
     
 
 def partOne(input):
-    command = parse_instruction_to_command(input[0])
-    print(command)
+    grid = {} #Storing grid to a dictionary.
+    for instruction_line in input:
+        command = parse_instruction_to_command(instruction_line)
+        grid = operate_on_grid(grid,command)
+    
+    print(sum(grid.values()))
 	
 ### Part 2 ###
 def partTwo(input):
