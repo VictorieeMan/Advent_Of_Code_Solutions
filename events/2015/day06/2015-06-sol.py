@@ -47,24 +47,27 @@ def parse_instruction_to_command(input_line):
 def operate_on_grid(grid,command):
     """Preforms command as an operation on the grid."""
     operation, x1, y1, x2, y2 = command
+    xRange = range(x1,x2+1)
+    yRange = range(y1,y2+1)
     if operation == 2:
-       for i in range(x1,x2):
-        for j in range(y1,y2):
-            pos = [i,j]
-            grid[pos] = (grid[pos] + 1) % 2
+       for i in xRange:
+        for j in yRange:
+            grid[i][j] = (grid[i][j] + 1) % 2
     else:
-        for i in range(x1,x2):
-            for j in range(y1,y2):
-                pos = [i,j]
-                grid[pos] = operation
+        for i in xRange:
+            for j in yRange:
+                grid[i][j] = operation
+                
     return grid
     
 
 def partOne(input):
-    grid = np.zeros((1000,1000)) #Storing grid to a numpy matrix.
+    grid = np.zeros((1000,1000)).astype(int) #Storing grid to a numpy matrix.
     
     i = 0
-    for instruction_line in input[:-1]: #Last line is empty
+    for instruction_line in input: #Last line is empty
+        if instruction_line == "":
+            continue
         command = parse_instruction_to_command(instruction_line)
         grid = operate_on_grid(grid,command)
 
@@ -75,8 +78,9 @@ def partOne(input):
         if(i%10==0):
             #Two decimals
             print("Percentage: ",round(i/len(input)*100,2),"%")
-        print(grid.sum())
+        # print(grid.sum())
     
+    print("Done parsing instructions! 100%")
     print(grid.sum())
 	
 ### Part 2 ###
