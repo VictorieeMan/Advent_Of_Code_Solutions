@@ -13,8 +13,24 @@ import aoc2015_tools as at
 ### START SOLUTION BODY ###
 ### Part 1 ###
 
+def inputEdges_to_graph(input)->dict:
+    """Takes the input and returns a graph in the form of a nested dictionary."""
+    graph = {}
+    for distance_str in input:
+        array = distance_str.split()
+
+        #Add to nested dictionary
+        if array[0] not in graph:
+            graph[array[0]] = {}
+        graph[array[0]][array[2]] = int(array[4])
+    
+    return graph
+
 def partOne(input):
-    print('hello')
+    #Starting and End point must be different.
+    #Must visit each location exactly once.
+    #Find the shortest path.
+    graph = inputEdges_to_graph(input)
 	
 ### Part 2 ###
 def partTwo(input):
