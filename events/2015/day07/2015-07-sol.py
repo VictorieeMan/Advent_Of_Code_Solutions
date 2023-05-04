@@ -114,14 +114,26 @@ def partOne(input):
         signal = fetch_and_operate(target,board)
         print(target,': ',signal)
     
-    print(fetch_and_operate('a',board))
+    a = fetch_and_operate('a',board)
+    print('Part 1:',a)
+    return a
 	
 ### Part 2 ###
-def partTwo(input):
-    pass
+def partTwo(input, a):
+    board = {}
+    for coupling in input:
+        if coupling == '':
+            continue
+        parsing_couplings(coupling, board)
+    
+    board['b'] = a
+    
+    a = fetch_and_operate('a',board)
+    print('Part 2:',a)
+    
 
 ### Main ###
 input = at.input_to_string(__file__,"input.txt")
 input = input.split('\n')
-partOne(input)
-partTwo(input)
+a = partOne(input)
+partTwo(input, a)
