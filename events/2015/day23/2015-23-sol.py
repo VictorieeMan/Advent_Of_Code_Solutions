@@ -22,5 +22,6 @@ def partTwo(input):
 
 ### Main ###
 input = at.input_to_string(__file__,"input.txt")
+input = input.split('\n')[:-1] #Skipping last line, that's usually empty.
 partOne(input)
 partTwo(input)
