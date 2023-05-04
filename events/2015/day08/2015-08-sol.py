@@ -53,11 +53,30 @@ def partOne(input):
 
 	
 ### Part 2 ###
+def calc_enc_chars(string):
+    count = 2 #Including an extra " on each end of the string.
+    length = len(string)
+    count += length
+
+    for char in string:
+        if char == '\"' or char == '\\':
+            count += 1
+
+    return count
+
 def partTwo(input):
-    pass
+    total_code_chars = 0
+    total_enc__chars = 0
+    for line in input:
+        total_code_chars += len(line)
+        total_enc__chars += calc_enc_chars(line)
+        # print(len(line),calc_enc_chars(line))
+    
+    ans = total_enc__chars - total_code_chars
+    print(ans)
 
 ### Main ###
 input = at.input_to_string(__file__,"input.txt")
 input = input.split('\n')[:-1] #Disregard last row, that is empty.
-partOne(input)
+# partOne(input)
 partTwo(input)
