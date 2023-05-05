@@ -46,6 +46,10 @@ def partOne(input):
 	
 ### Part 2 ###
 def partTwo(input):
+    string = input
+    for i in range(50):
+        string = look_and_say(string)
+    print(len(string))
     print("Part 2, Done!\n")
 
 ### Main ###
