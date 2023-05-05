@@ -10,11 +10,11 @@ import aoc2015_tools as at
 ### Part 1 ###
 
 def partOne(input):
-    pass
+    print("Part 1, Done!\n")
 	
 ### Part 2 ###
 def partTwo(input):
-    pass
+    print("Part 2, Done!\n")
 
 ### Main ###
 input = at.input_to_string(__file__,"input.txt")
