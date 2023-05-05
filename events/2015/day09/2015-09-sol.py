@@ -31,18 +31,41 @@ def inputEdges_to_graph(input)->dict:
     
     return graph
 
+def path_length(path:tuple,graph:dict)->int:
+    """Returns the length of the path."""
+    length = 0
+    for i in range(len(path)-1):
+        try:
+            length += graph[path[i]][path[i+1]]
+        except KeyError:
+            length += graph[path[i+1]][path[i]]
+    return length
+
 def partOne(input):
     #Starting and End point must be different.
     #Must visit each location exactly once.
     #Find the shortest path.
     graph = inputEdges_to_graph(input)
+    possible_paths = at.permutations(graph['nodes'])
+
+    lengths = []
+    for i in range(len(possible_paths)):
+        length = path_length(possible_paths[i],graph)
+        lengths.append(length)
+    
+    print(min(lengths))
+
+    print("Part 1, Done!\n")
+    return lengths
 	
 ### Part 2 ###
 def partTwo(input):
-    pass
+    print(max(input))
+    
+    print("Part 2, Done!\n")
 
 ### Main ###
 input = at.input_to_string(__file__,"input.txt")
 input = input.split('\n')[:-1] #Skipping last line, that's usually empty.
-partOne(input)
-partTwo(input)
+lengths = partOne(input)
+partTwo(lengths)
