@@ -80,3 +80,9 @@ def regex_check(regex, string):
     return bool(re.search(regex, string))
 
 ### Math
+
+def permutations(iterable):
+    """Returns a list of all permutations of the given iterable."""
+    # https://docs.python.org/3/library/itertools.html#itertools.permutations
+    import itertools
+    return list(itertools.permutations(iterable))
