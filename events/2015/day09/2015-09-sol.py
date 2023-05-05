@@ -27,7 +27,7 @@ def inputEdges_to_graph(input)->dict:
 
         #Add to set of nodes
         graph['nodes'].add(array[0])
-
+        graph['nodes'].add(array[2])
     
     return graph
 
