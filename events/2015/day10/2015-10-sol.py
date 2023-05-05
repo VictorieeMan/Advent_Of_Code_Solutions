@@ -13,8 +13,32 @@ import aoc2015_tools as at
 ### START SOLUTION BODY ###
 ### Part 1 ###
 
-def partOne(input):
+def look_and_say(string):
+    new_string = ""
+    length = len(string)
+    i = 0
+    while i < length:
+        char = string[i]
 
+        #Count continious occurances of char
+        count = 1
+        char_i = char
+        while i+1 < length and char_i == string[i+1]:
+            count += 1
+            i += 1
+            if string[i+1] == None:
+                break
+        new_string += str(count)
+        new_string += char
+        i += 1
+    return new_string
+        
+
+def partOne(input):
+    string = input
+    for i in range(40):
+        string = look_and_say(string)
+    print(len(string))
     print("Part 1, Done!\n")
 	
 ### Part 2 ###
