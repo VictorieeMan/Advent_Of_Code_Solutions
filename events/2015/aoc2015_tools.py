@@ -7,6 +7,7 @@ import os
 
 ### Useful modules
 import hashlib
+import itertools
 import re #Regex
 
 ### Utility ###
@@ -83,6 +84,5 @@ def regex_check(regex, string):
 
 def permutations(iterable):
     """Returns a list of all permutations of the given iterable."""
-    # https://docs.python.org/3/library/itertools.html#itertools.permutations
-    import itertools
+    # https://docs.python.org/3/library/itertools.html#itertools.permutations 
     return list(itertools.permutations(iterable))
