@@ -16,6 +16,7 @@ import aoc2015_tools as at
 def inputEdges_to_graph(input)->dict:
     """Takes the input and returns a graph in the form of a nested dictionary."""
     graph = {}
+    graph['nodes'] = set()
     for distance_str in input:
         array = distance_str.split()
 
@@ -23,6 +24,10 @@ def inputEdges_to_graph(input)->dict:
         if array[0] not in graph:
             graph[array[0]] = {}
         graph[array[0]][array[2]] = int(array[4])
+
+        #Add to set of nodes
+        graph['nodes'].add(array[0])
+
     
     return graph
 
