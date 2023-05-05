@@ -81,16 +81,19 @@ def partOne(input):
 
     #Converting password numbers to a list of chars
     password = [alphabet[numb] for numb in password]
-    print(''.join(password))
+    password = ''.join(password)
+    print(password)
 
-    print("Part 1, Done!\n")
+    return password
 	
 ### Part 2 ###
 def partTwo(input):
+    partOne(input)
     print("Part 2, Done!\n")
 
 ### Main ###
 input = at.input_to_string(__file__,"input.txt")
 input = list(input[:-1]) #Input to char list.
-partOne(input)
-partTwo(input)
+password2 = partOne(input)
+print("Part 1, Done!\n")
+partTwo(password2)
