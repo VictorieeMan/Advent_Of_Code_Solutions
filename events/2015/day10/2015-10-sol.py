@@ -14,7 +14,10 @@ import aoc2015_tools as at
 ### Part 1 ###
 
 def look_and_say(string):
-    new_string = ""
+    """Preforms the iterative action of counting according to
+    the rules of the game.
+    """
+    new_string = [] #Adding to list was much faster than concatenating  strings.
     length = len(string)
     i = 0
     while i < length:
@@ -28,10 +31,10 @@ def look_and_say(string):
             i += 1
             if string[i+1] == None:
                 break
-        new_string += str(count)
-        new_string += char
+        new_string.append(str(count))
+        new_string.append(char)
         i += 1
-    return new_string
+    return ''.join(new_string)
         
 
 def partOne(input):
