@@ -77,12 +77,14 @@ class Coordinate_2d(object):
 def regex_check(regex, string):
     """Returns True if the regex matches the string, else False."""
     # https://www.w3schools.com/python/python_regex.asp
-    
     return bool(re.search(regex, string))
 
 ### Math
 
 def permutations(iterable):
-    """Returns a list of all permutations of the given iterable."""
+    """Returns a list of all permutations of the given iterable.
+    Input: iterable
+    Output: list of tuples
+    """
     # https://docs.python.org/3/library/itertools.html#itertools.permutations 
     return list(itertools.permutations(iterable))
