@@ -24,8 +24,8 @@ def convert_char_digit_array_to_int(digit_array):
         number = 0
     return number
 
-def partOne(input):
-    array = list(input)
+def summarize_numbers_in_string(string):
+    array = list(string)
     i = 0
     sum = 0
     number = []
@@ -45,14 +45,53 @@ def partOne(input):
         i += 1
     digit = convert_char_digit_array_to_int(number)
     sum += digit
+    return sum
+
+def partOne(input):
+    sum = summarize_numbers_in_string(input)
     print(sum)
     print("Part 1, Done!\n")
 	
 ### Part 2 ###
+def find_red_dictvalues(dict_item):
+    """Returns True if any value in the dict_item is "red".
+    """
+    for key,value in dict_item.items():
+        if value == "red":
+            return True
+    return False
+
+def remove_dicts_with_value_red(data):
+    """Recursively removes all dicts with value "red".
+    """
+    try:
+        new_data = data.copy()
+    except:
+        #If not copyable, when at the bottom of the recursion
+        new_data = data
+    if isinstance(new_data, dict):
+        if find_red_dictvalues(new_data):
+            new_data = None
+        else:
+            for key,value in new_data.items():
+                new_data[key] = remove_dicts_with_value_red(value)
+    elif isinstance(new_data, list):
+        for i in range(len(new_data)):
+            new_data[i] = remove_dicts_with_value_red(new_data[i])
+    return new_data
+
 def partTwo(input):
     """Ignore any object (and all of its children) which has any property with
     the value "red". Do this only for objects ({...}), not arrays ([...]).
     """
+    import json
+    data = json.loads(input)
+    data = remove_dicts_with_value_red(data)
+    #Sereialize to string
+    data = json.dumps(data)
+    #Summarize numbers in string, using part 1 function
+    sum = summarize_numbers_in_string(data)
+    print(sum)
     print("Part 2, Done!\n")
 
 ### Main ###
