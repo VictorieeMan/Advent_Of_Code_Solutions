@@ -61,7 +61,6 @@ def partOne(input):
 ### Part 2 ###
 def partTwo(input):
     print(max(input))
-    
     print("Part 2, Done!\n")
 
 ### Main ###
