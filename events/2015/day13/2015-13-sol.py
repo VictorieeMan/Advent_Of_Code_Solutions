@@ -73,12 +73,52 @@ def creating_placement_array(guest_idx):
     
     return placement_array
 
+def finding_happiest_table_value(guest_pref, guest_idx, pos_placements):
+    """Searching for the happiest talbe, by testing all permutations."""
+
+    # Creating a reverse dict of guest_idx, for faster lookup.
+    idx_guest = {}
+    for guest,idx in guest_idx.items():
+        idx_guest[idx] = guest
+
+    def mutual_mood(persA_idx, persB_idx):
+        """Given two people, return the sum of their mutual opinion of company."""
+        persA = idx_guest[persA_idx]
+        persB = idx_guest[persB_idx]
+
+        # Adding their opinion of the others company together.
+        sum = guest_pref[persA][persB] + guest_pref[persB][persA]
+        
+        return sum
+    
+    max_table_value = 0
+    num_guests = len(guest_idx)
+    for placement in pos_placements:
+        sum = 0
+        #Calculating the sum mood of the current placement.
+        for i in range(num_guests):
+            #Picking people pairwise around the table, with current placement.
+            idx_A = i
+            idx_B = (i+1) % num_guests #Because they are sitting in a circle
+
+            persA_idx = placement[idx_A]
+            persB_idx = placement[idx_B]
+            sum += mutual_mood(persA_idx, persB_idx)
+        
+        if sum > max_table_value:
+            max_table_value = sum
+
+    return max_table_value
+
 def partOne(input):
     data = parsing_input(input)
     guest_idx, guest_pref = structuring_data(data)
     placement = creating_placement_array(guest_idx)
     possible_placements = at.permutations(placement)
-    # happiest_table_value = max_talbe_value(possible_placements)
+    max_table_value = finding_happiest_table_value(
+        guest_pref, guest_idx, possible_placements
+        )
+    print(max_table_value)
     print("Part 1, Done!\n")
 	
 ### Part 2 ###
