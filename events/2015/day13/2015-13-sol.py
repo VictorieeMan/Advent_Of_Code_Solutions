@@ -24,12 +24,45 @@ def parsing_input(input):
     data = []
     for str in input:
         str = str.split()
-        data.append([str[0],str[2],str[3],str[10][:-1]]) # ['Alice', 'gain', '2', 'Bob']
+        data.append([str[0],str[2],str[3],str[10][:-1]])
+        # ['Alice', 'gain', '2', 'Bob']
     return data
+
+def structuring_data(data):
+    """input: list of lists of strings"""
+    """Converting the relational datapoints to directional edges,
+    and adding them to a dictionary."""
+    guests = set()
+    guest_pref = {}
+    for record in data:
+        personA = record[0]
+        mood    = record[1]
+        points  = record[2]
+        personB = record[3]
+
+        # Setting the value of the edge to a number
+        value = int(points)
+        if mood == "gain":
+            value *= 1
+        else:
+            value *= -1
+        
+        # This is how personA values the company of personB
+        persA_opinion_of = [personB,value]
+
+        if personA not in guests:
+            #Adding guest to guest list
+            guests.add(personA)
+            #Creating the internal dictionary
+            guest_pref[personA] = {}
+        
+        guest_pref[personA][personB] = value
+    return guest_pref
+
 
 def partOne(input):
     data = parsing_input(input)
-    print(data)
+    structuring_data(data)
     print("Part 1, Done!\n")
 	
 ### Part 2 ###
