@@ -13,6 +13,31 @@ import aoc2015_tools as at
 ### START SOLUTION BODY ###
 ### Part 1 ###
 
+class GuestPreferences:
+    def __init__(self):
+        self.pref = {}
+    
+    def add_pref(self, personA, personB, value):
+        if personA not in self.pref:
+            self.pref[personA] = {}
+        self.pref[personA][personB] = value
+    
+    def get_pref(self, personA, personB):
+        if personA in self.pref:
+            if personB in self.pref[personA]:
+                # This is how personA values the company of personB
+                return self.pref[personA][personB]
+            else:
+                # If person B is missing, then personA is indifferent to them.
+                return 0
+        else:
+            # If person A is missing, then personA is indifferent to everyone.
+            return 0
+    
+    def get_mutual_pref(self, personA, personB):
+        """Returns the sum of the mutual opinion of company."""
+        return self.get_pref(personA, personB) + self.get_pref(personB, personA)
+
 def parsing_input(input):
     """Input: list of strings"""
     """Sample:
@@ -33,7 +58,7 @@ def structuring_data(data):
     """Converting the relational datapoints to directional edges,
     and adding them to a dictionary."""
     guests = set()
-    guest_pref = {}
+    guest_pref = GuestPreferences()
     for record in data:
         personA = record[0]
         mood    = record[1]
@@ -50,11 +75,10 @@ def structuring_data(data):
         if personA not in guests:
             # Adding guest to guest list
             guests.add(personA)
-            # Creating the internal dictionary
-            guest_pref[personA] = {}
         
         # This is how personA values the company of personB
-        guest_pref[personA][personB] = value
+        # guest_pref[personA][personB] = value
+        guest_pref.add_pref(personA, personB, value)
     
     idx = 0
     guest_idx = {}
@@ -87,7 +111,7 @@ def finding_happiest_table_value(guest_pref, guest_idx, pos_placements):
         persB = idx_guest[persB_idx]
 
         # Adding their opinion of the others company together.
-        sum = guest_pref[persA][persB] + guest_pref[persB][persA]
+        sum = guest_pref.get_mutual_pref(persA, persB)
         
         return sum
     
@@ -120,13 +144,26 @@ def partOne(input):
         )
     print(max_table_value)
     print("Part 1, Done!\n")
+    return guest_idx, guest_pref
 	
 ### Part 2 ###
-def partTwo(input):
+def partTwo(guest_idx, guest_pref):
+
+    # Adding myself ot the guest list
+    idx = len(guest_idx)
+    guest_idx["Mr. Me"] = idx
+
+    # Same as the rest of partOne()
+    placement = creating_placement_array(guest_idx)
+    possible_placements = at.permutations(placement)
+    max_table_value = finding_happiest_table_value(
+        guest_pref, guest_idx, possible_placements
+        )
+    print(max_table_value)
     print("Part 2, Done!\n")
 
 ### Main ###
 input = at.input_to_string(__file__,"input.txt")
 input = input.split('\n')[:-1] #Skipping last line, that's usually empty.
-partOne(input)
-# partTwo(input)
+guest_idx, guest_pref = partOne(input)
+partTwo(guest_idx, guest_pref)
