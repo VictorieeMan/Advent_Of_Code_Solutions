@@ -55,12 +55,30 @@ def structuring_data(data):
         
         # This is how personA values the company of personB
         guest_pref[personA][personB] = value
-    return guest_pref
+    
+    idx = 0
+    guest_idx = {}
+    for guest in guests:
+        guest_idx[guest] = idx
+        idx += 1
 
+    return (guest_idx, guest_pref)
+
+def creating_placement_array(guest_idx):
+    """input: dictionary["guest_name"] = int(id)"""
+    """To be easier on the memory when calculating permutations."""
+    placement_array = []
+    for guest, idx in guest_idx.items():
+        placement_array.append(idx)
+    
+    return placement_array
 
 def partOne(input):
     data = parsing_input(input)
-    structuring_data(data)
+    guest_idx, guest_pref = structuring_data(data)
+    placement = creating_placement_array(guest_idx)
+    possible_placements = at.permutations(placement)
+    # happiest_table_value = max_talbe_value(possible_placements)
     print("Part 1, Done!\n")
 	
 ### Part 2 ###
