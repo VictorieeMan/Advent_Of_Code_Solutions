@@ -40,7 +40,7 @@ def structuring_data(data):
         points  = record[2]
         personB = record[3]
 
-        # Setting the value of the edge to a number
+        # Converting opinion strings, to integer value
         value = int(points)
         if mood == "gain":
             value *= 1
@@ -51,9 +51,9 @@ def structuring_data(data):
         persA_opinion_of = [personB,value]
 
         if personA not in guests:
-            #Adding guest to guest list
+            # Adding guest to guest list
             guests.add(personA)
-            #Creating the internal dictionary
+            # Creating the internal dictionary
             guest_pref[personA] = {}
         
         guest_pref[personA][personB] = value
