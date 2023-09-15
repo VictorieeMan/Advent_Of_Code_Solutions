@@ -46,9 +46,6 @@ def structuring_data(data):
             value *= 1
         else:
             value *= -1
-        
-        # This is how personA values the company of personB
-        persA_opinion_of = [personB,value]
 
         if personA not in guests:
             # Adding guest to guest list
@@ -56,6 +53,7 @@ def structuring_data(data):
             # Creating the internal dictionary
             guest_pref[personA] = {}
         
+        # This is how personA values the company of personB
         guest_pref[personA][personB] = value
     return guest_pref
 
